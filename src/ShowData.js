@@ -76,7 +76,7 @@ function ShowData() {
   return (
     <div className="home">
 
-      <h1>Retrieve all the vendors</h1> <br></br>
+      <h1>Display Users</h1> <br></br>
       {/* {data.map((val) => (
         <div style={{ borderWidth: 1 }} key={Math.random()}>
           <p> {val?.name ?? "not available"} </p>
