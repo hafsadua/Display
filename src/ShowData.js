@@ -49,6 +49,7 @@ function ShowData() {
     },[]);
 
   return (
+<<<<<<< HEAD
     <div className="login">
       <div className="loginContainer">
       <h1>Lesson Competency</h1> <br></br>
@@ -111,6 +112,17 @@ function ShowData() {
      </tbody>
    </Table>
       </div>
+=======
+    <div className="home">
+
+      <h1>Display Users</h1> <br></br>
+      {/* {data.map((val) => (
+        <div style={{ borderWidth: 1 }} key={Math.random()}>
+          <p> {val?.name ?? "not available"} </p>
+         
+        </div>
+      ))} */}
+>>>>>>> f8da279392d44c8241bd29c1465dc7360f26dd5d
     </div>
   );
 }
