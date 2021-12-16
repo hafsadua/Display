@@ -74,7 +74,7 @@ const ForgetPassword = (props) => {
                     <div>
 
             <br />
-            
+
 
 
                         <button className="btnContainer" onClick={() => navigate('/login')} className={!sendEmail ? 'checkEmail' : 'checkEmailNot'} >Login</button><br /><br />

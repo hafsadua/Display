@@ -32,7 +32,7 @@ function Login(props) {
             (val) => val === userCredential.user.uid
           );
           if (keys.length) {
-            navigate('/showdata')
+            navigate('/welcome')
             alert("Login Successfull")
           } else {
             alert("Invalid Details ");

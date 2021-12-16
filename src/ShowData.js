@@ -1,90 +1,119 @@
 import React, { useState, useEffect } from "react";
-
+import { Table } from "react-bootstrap";
 import { getDatabase, ref, set, onValue, get, child } from "firebase/database";
-import { collection, doc, setDoc ,  getDoc, onSnapshot, getFirestore} from "firebase/firestore";
+import { collection, doc, setDoc, getDocs, onSnapshot, getFirestore } from "firebase/firestore";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import { tab } from "@testing-library/user-event/dist/tab";
+
 
 function ShowData() {
-  const [data, UpdateData] = useState([]);
+  const [data, updateData] = useState([]);
+  const [check, setCheck] = useState([]);
+  const [observeels , updateObserveels] = useState([]);
+  const [satisfactoryls , updateSatisfactoryls] = useState([]);
+  const [datels , updateDatels] = useState([]);
 
+  var observerLS =[];
+  var observeeLS = [];
+  var SatisfactoryLS =[];
+  var DateLS = [];
 
+  async function showData() {
+    const db = getFirestore();
 
+    const querySnapshot = await getDocs(collection(db, "LessonCompetency"));
+    console.log("Done getfirebase")
+    console.log(querySnapshot)
 
-  // const docRef = doc(db, "users");
-  // const docSnap = getDoc(docRef);
   
-  // if (docSnap.exists()) {
-  //   console.log("Document data:", docSnap.data());
-  // } else {
-    
-  //   console.log("No such document!");
-  // }
-  // var newData = [];
-  // const starCountRef = firestore.collection(`OnOffTask/`);
-  // const GetData = () => {
-  //   var value = [];
-  //   onValue(starCountRef, (snapshot) => {
-  //     value = Object.values(snapshot.val());
-  //     console.log(value)
-
-  //   });
-  //   setTimeout(() => {
-  //     UpdateData(value);
-  //   }, 1000);
-  // };
-  // useEffect(() => {
-  //   GetData();
-  //   setTimeout(() => {
-  //     GetData();
-  //   }, 500);
-
-  //   return () => { };
-  // }, []);
-
-  // const dbRef = ref(getDatabase());
-  // get(child(dbRef, `OnOffTask/`)) . then((snapshot)=>{
-  //     if (snapshot.exists()){
-  //         console.log(snapshot.val())
-  //     }
-  //     else{
-  //         console.log("Not Found")
-  //     }
-  // }).catch((error)=>{
-  //     console.error(error);
-  // })
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  // const ref = firebase.firestore().collection("users");
-  // function getUsers(){
-  //   setLoading(true);
-  //   ref.onSnapshot((querySnapshot)=>{
-  //     const items = [];
-  //     querySnapshot.forEach((doc)=>{
-  //       items.push(doc.data())
-  //     });
-
-  //     setUsers(items);
-  //     setLoading(false);
-  //   });
-
-  // }
-
-  // useEffect(()=>{
-  //   getUsers();
-  // },[]);
-
+    querySnapshot.forEach((doc) => {
+     
+      console.log(doc.data());
+     observeeLS.push(doc.data().observee)
+     observerLS.push(doc.data().observer)
+     SatisfactoryLS.push(doc.data().Satisfactory)
+      DateLS.push(doc.data().Date)
+    });
+   console.log(observeeLS)
+   console.log(observerLS)
+   console.log(SatisfactoryLS)
+   console.log(DateLS)
+   updateData(observerLS)
+   updateObserveels(observeeLS)
+   updateSatisfactoryls(SatisfactoryLS)
+   updateDatels(DateLS)
+   
+  }
+  useEffect(() => {
+  showData()
+    },[]);
 
   return (
-    <div className="home">
+    <div className="login">
+      <div className="loginContainer">
+      <h1>Lesson Competency</h1> <br></br>
+   <Table>
+     <thead> 
+        <td>
+          Observer
+        </td>
+       <td>
+         Observee
+       </td>
+       <td>
+         Satisfactory
+       </td>
+       {/* <td>
+        Date
+       </td> */}
+     </thead>
+     <tbody>
+    <td> 
+     {
+           data.map((observerLS)=>(
+             <tr key={Math.random()}>
+                {observerLS}
 
-      <h1>Retrieve all the vendors</h1> <br></br>
-      {/* {data.map((val) => (
-        <div style={{ borderWidth: 1 }} key={Math.random()}>
-          <p> {val?.name ?? "not available"} </p>
-         
-        </div>
-      ))} */}
+             </tr>
+           ))
+         }
+         </td>
+         <td>
+          {
+           observeels.map((observeeLS)=>(
+             <tr key={Math.random()}>
+                {observeeLS}
+
+             </tr>
+           ))
+         }
+       </td>
+       <td>
+          {
+           satisfactoryls.map((SatisfactoryLS)=>(
+             <tr key={Math.random()}>
+                {SatisfactoryLS}
+
+             </tr>
+           ))
+         }
+       </td>
+       {/* <td>
+          {
+           datels.map((DateLS)=>(
+             <tr key={Math.random()}>
+                {DateLS}
+
+             </tr>
+           ))
+         }
+       </td> */}
+     </tbody>
+   </Table>
+      </div>
     </div>
   );
 }
 
 export default ShowData;
+

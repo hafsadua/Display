@@ -45,6 +45,24 @@ button {
   box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
   background-image: "background.jpg";
 }
+.loginContainer {
+  padding: 60px;
+  margin: auto;
+  width: 100%;
+  max-width: 520px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: radial-gradient(
+    ellipse at left bottom,
+    rgb(110, 110, 110) 0%,
+     #cac5c8,
+    rgba(82, 79, 81, 0.9) 100%
+  );
+  box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+  background-image: "background.jpg";
+}
 
 .login .loginContainer label {
   color: black;
@@ -112,4 +130,7 @@ button {
   line-height: 1;
   font-family:'Courier New', Courier, monospace;
   font-size: 25px;
+}
+.th .td .tr{
+ border-radius: 2px;
 }
